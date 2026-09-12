@@ -1,9 +1,8 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Rota Viva
 
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+- Frontend: React, TypeScript, Vite e Tailwind. Entrada em src/main.tsx; saída em dist.
+- Backend: funções Node da Vercel em api/, regras em src/server/ e src/lib/.
+- npm run dev inicia Vite e API local. Preserve cookies HTTP-only, roles e validação de origem.
+- Prisma/PostgreSQL: preserve migrations e os campos chave, ativo, datahoraalt e datahoracad.
+- Lean Fleet e cálculo de estrelas permanecem placeholders.
+- Não inclua segredos ou dependências do servidor no bundle frontend.

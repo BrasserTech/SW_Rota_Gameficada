@@ -1,7 +1,7 @@
-import { db } from './db';
-import { currentUser } from './auth';
-import { visibleStars } from './stars';
-import { leanFleet } from './lean-fleet';
+import { db } from './db.js';
+import { currentUser } from './auth.js';
+import { visibleStars } from './stars.js';
+import { leanFleet } from './lean-fleet.js';
 export async function getAppData() {
   const user = await currentUser();
   const admin = user?.role === 'ADMIN';

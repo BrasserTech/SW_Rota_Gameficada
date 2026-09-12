@@ -1,6 +1,6 @@
 # Rota Viva
 
-MVP de turismo e rotas gamificadas com Next.js, React, TypeScript, Tailwind, Prisma e PostgreSQL.
+MVP de turismo e rotas gamificadas com Vite, React, TypeScript, Tailwind, Prisma e PostgreSQL. Backend em funções Node da Vercel.
 
 ## Executar localmente
 
@@ -10,7 +10,7 @@ Com o banco e o `.env` configurados:
 npm run dev
 ```
 
-Acesse http://localhost:3000.
+Acesse http://localhost:3000. O comando inicia o frontend Vite na porta 3000 e a API local na porta 3001. Encerre o servidor anterior antes de iniciar.
 
 Na primeira instalação:
 
@@ -21,21 +21,19 @@ Na primeira instalação:
 
 ## Publicar na Vercel
 
-O framework deste projeto é **Next.js**. Na tela de importação, selecione:
+O deploy segue a mesma estrutura do projeto Kallyn: frontend Vite em `dist` e funções serverless na pasta `api`.
 
 | Campo | Valor |
 | --- | --- |
-| Application Preset | Next.js |
+| Application Preset | Vite |
 | Root Directory | `./` |
 | Build Command | `npm run build` |
-| Output Directory | Padrão do Next.js (Override desativado) |
+| Output Directory | `dist` |
 | Install Command | `npm ci` |
 
-O arquivo `vercel.json` já declara essas configurações. O build gera o Prisma Client antes de compilar o Next.js.
+O arquivo `vercel.json` já declara essas configurações. O build gera o Prisma Client, verifica o TypeScript e cria `dist/index.html`. A Vercel publica o frontend e as funções `api/action.ts` e `api/data.ts` separadamente. O backend mantém autenticação, cookies HTTP-only, roles e acesso ao PostgreSQL. Não é um export estático do backend.
 
-O Next.js gera `.next`. O `vercel.json` define `framework: "nextjs"` e `outputDirectory: null` para usar a saída padrão do framework, sem exigir a pasta `dist` de um projeto Vite.
-
-Se um deploy ainda informar que `dist` não existe, confira em Settings → Build and Deployment se o preset é Next.js e desative o Override de Output Directory. Confirme também que o commit do deploy contém o `vercel.json` atual na Root Directory (`./`). Faça o deploy do commit novo; repetir um deploy antigo não inclui alterações locais ainda não enviadas ao GitHub.
+Envie também `package-lock.json`, `vite.config.ts`, `index.html`, `api/` e `src/server/` ao GitHub. Use o commit novo no deploy.
 
 Em **Environment Variables**, configure:
 

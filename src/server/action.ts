@@ -1,12 +1,11 @@
-import { isSameOriginRequest } from '@/lib/request-origin';
+import { isSameOriginRequest } from '../lib/request-origin.js';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
-import { cookies } from 'next/headers';
+import { cookies } from './http.js';
 import { Prisma } from '@prisma/client';
-import { db } from '@/lib/db';
-import { ApiError, requireUser, setSession } from '@/lib/auth';
-import { advanceDwell, distanceMeters, validatePresence } from '@/lib/visits';
-export const runtime = 'nodejs';
+import { db } from '../lib/db.js';
+import { ApiError, requireUser, setSession } from '../lib/auth.js';
+import { advanceDwell, distanceMeters, validatePresence } from '../lib/visits.js';
 const uuid = z.string().uuid();
 const text = z.string().trim().min(1).max(300);
 const coordinate = z.object({ latitude: z.number().min(-90).max(90), longitude: z.number().min(-180).max(180), accuracy: z.number().nonnegative().max(100000), timestamp: z.number().refine(v => Math.abs(Date.now() - v) < 30000, 'Localização desatualizada. Tente novamente.') });

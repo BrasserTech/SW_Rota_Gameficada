@@ -1,4 +1,4 @@
-/** Next.js may expose an internal URL behind a proxy. Host preserves the public authority. */
+/** Reverse proxies may expose an internal URL. Host preserves the public authority. */
 export function isSameOriginRequest(request: Request): boolean {
   const origin = request.headers.get('origin');
   if (!origin || request.headers.get('sec-fetch-site') === 'cross-site') return false;

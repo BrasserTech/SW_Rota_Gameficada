@@ -1,11 +1,12 @@
 'use client';
 import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import dynamic from 'next/dynamic';
+import { lazy, Suspense } from 'react';
 import AuthForm from './auth-form';
 import UserMenu from './user-menu';
 import { ArrowDownLeft, ArrowRight, ArrowUpRight, Bell, CalendarDays, Check, CheckCircle2, ChevronDown, ChevronRight, Clock3, Compass, Download, Footprints, Heart, Home, LayoutDashboard, List, LogOut, Map, MapPin, Menu, Navigation, Phone, Plus, Route as RouteIcon, Search, Settings2, ShieldCheck, Sparkles, Star, Store, Ticket, Trophy, Users, Wallet, X } from 'lucide-react';
 import type { AppData, Place, Route } from '@/lib/types';
-const PlacesMap = dynamic(() => import('./map'), { ssr: false, loading: () => <div className="empty">Carregando mapa…</div> });
+const LazyMap = lazy(() => import('./map'));
+function PlacesMap(props: { places: Place[]; onSelect: (p: Place) => void }) { return <Suspense fallback={<div className="empty">Carregando mapa…</div>}><LazyMap {...props} /></Suspense>; }
 type View = 'home' | 'explore' | 'routes' | 'points' | 'profile' | 'phones' | 'dashboard' | 'businesses' | 'users' | 'settings';
 type Modal = { kind: 'place'; place: Place } | { kind: 'auth' } | { kind: 'review'; visitId: string } | { kind: 'editPlace'; place?: Place } | { kind: 'editRoute'; route?: Route } | { kind: 'editPhone'; phone?: AppData['phones'][number] } | null;
 type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };

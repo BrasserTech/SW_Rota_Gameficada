@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers';
+import { cookies } from '../server/http.js';
 import { SignJWT, jwtVerify } from 'jose';
-import { db } from './db';
+import { db } from './db.js';
 import type { Role } from '@prisma/client';
 export class ApiError extends Error { constructor(public status: number, message: string) { super(message); } }
 function secret() {
