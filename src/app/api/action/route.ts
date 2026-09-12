@@ -1,3 +1,4 @@
+import { isSameOriginRequest } from '@/lib/request-origin';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
@@ -20,7 +21,7 @@ function throttle(key: string) {
 }
 export async function POST(request: Request) {
   try {
-    if (request.headers.get('origin') !== new URL(request.url).origin) throw new ApiError(403, 'Origem da requisição não permitida.');
+    if (!isSameOriginRequest(request)) throw new ApiError(403, 'Origem da requisição não permitida.');
     const raw = await request.text();
     if (raw.length > 64000) throw new ApiError(413, 'Requisição muito grande.');
     const body = JSON.parse(raw);
