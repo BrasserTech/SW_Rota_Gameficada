@@ -28,10 +28,12 @@ O framework deste projeto é **Next.js**. Na tela de importação, selecione:
 | Application Preset | Next.js |
 | Root Directory | `./` |
 | Build Command | `npm run build` |
-| Output Directory | `.next` |
+| Output Directory | `dist` |
 | Install Command | `npm ci` |
 
 O arquivo `vercel.json` já declara essas configurações. O build gera o Prisma Client antes de compilar o Next.js.
+
+O Next.js usa `distDir: 'dist'` para gerar a pasta esperada pela Vercel. O preset continua sendo **Next.js**.
 
 Em **Environment Variables**, configure:
 
