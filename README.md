@@ -28,12 +28,14 @@ O framework deste projeto é **Next.js**. Na tela de importação, selecione:
 | Application Preset | Next.js |
 | Root Directory | `./` |
 | Build Command | `npm run build` |
-| Output Directory | `dist` |
+| Output Directory | Padrão do Next.js (Override desativado) |
 | Install Command | `npm ci` |
 
 O arquivo `vercel.json` já declara essas configurações. O build gera o Prisma Client antes de compilar o Next.js.
 
-O Next.js usa `distDir: 'dist'` para gerar a pasta esperada pela Vercel. O preset continua sendo **Next.js**.
+O Next.js gera `.next`. O `vercel.json` define `framework: "nextjs"` e `outputDirectory: null` para usar a saída padrão do framework, sem exigir a pasta `dist` de um projeto Vite.
+
+Se um deploy ainda informar que `dist` não existe, confira em Settings → Build and Deployment se o preset é Next.js e desative o Override de Output Directory. Confirme também que o commit do deploy contém o `vercel.json` atual na Root Directory (`./`). Faça o deploy do commit novo; repetir um deploy antigo não inclui alterações locais ainda não enviadas ao GitHub.
 
 Em **Environment Variables**, configure:
 
