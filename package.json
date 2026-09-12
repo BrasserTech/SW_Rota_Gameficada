@@ -1,0 +1,54 @@
+{
+  "name": "sw_rota_gameficada",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "prisma generate && next build",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "test:integration": "tsx --test tests/integration.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrasserTech/SW_Rota_Gameficada.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrasserTech/SW_Rota_Gameficada/issues"
+  },
+  "homepage": "https://github.com/BrasserTech/SW_Rota_Gameficada#readme",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.12",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.45.0",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^22.20.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  },
+  "private": true,
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
